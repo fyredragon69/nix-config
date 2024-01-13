@@ -88,6 +88,12 @@
 	enableInstantMode = true;
   };
 
+  # Shell aliases. Could be useful.
+  home.shellAliases = {
+  l = "ls";
+  "cd.." = "cd ..";
+  };
+
   # ZSH screwery.
   programs.zsh = {
       oh-my-zsh = {

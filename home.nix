@@ -113,6 +113,12 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     initExtra = ''
+      if [ -n "$IN_NIX_SHELL" ]; then
+        PS1=$'%{\e[1;32m%}[''${IN_NIX_SHELL} nix-shell]%{\e[0m%} '"$PS1"
+        # zsh-nix-shell causes my PATH additions to be put after the /nix/store stuff,
+        # so i made a custom script to move the /nix/store paths to the front
+        export PATH=''$(${pkgs.python3}/bin/python3 -E ${./move-nix-store-paths-to-front.py})
+      fi
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
     '';

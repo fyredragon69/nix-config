@@ -20,15 +20,15 @@
   home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-	hello
-	neofetch
-	fastfetch
-	owofetch
-	nano
-	less
-	zsh
-	git
-	wget
+    hello
+    neofetch
+    fastfetch
+    owofetch
+    nano
+    less
+    zsh
+    git
+    wget
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -73,43 +73,46 @@
   #  /etc/profiles/per-user/awill/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-	EDITOR = "nano";
-	
+    EDITOR = "nano";
+
   };
   # dafuq?
   programs.thefuck = {
-	enable = true;
-	enableBashIntegration = true;
-	enableZshIntegration = true;
-	enableFishIntegration = true;
-	enableInstantMode = true;
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableFishIntegration = true;
+    enableInstantMode = true;
   };
 
   # Shell aliases. Could be useful.
   home.shellAliases = {
-  l = "ls";
-  "cd.." = "cd ..";
+    l = "ls";
+    "cd.." = "cd ..";
   };
 
   # ZSH screwery.
   programs.zsh = {
-      oh-my-zsh = {
+    plugins = [
+      {
+        name = "zsh-nix-shell";
+        src = pkgs.zsh-nix-shell;
+        file ="share/zsh-nix-shell/nix-shell.plugin.zsh";
+      }
+   ];
+    oh-my-zsh = {
       enable = true;
-      plugins = [
-        "git"
-        "docker"
-        "docker-compose"
-      ];
+      plugins = [ "git" "docker" "docker-compose" ];
       extraConfig = ''
         # no need for automatic updates with nix managing it
         zstyle ':omz:update' mode disabled
       '';
     };
-	enable = true;
-	dotDir = ".config/zsh";
-	enableAutosuggestions = true;
-	enableCompletion = true;
-	initExtra = ''
+    enable = true;
+    dotDir = ".config/zsh";
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    initExtra = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
     '';

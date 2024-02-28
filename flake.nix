@@ -13,17 +13,29 @@
 
   outputs = { nixpkgs, home-manager, jovian, ... }: {
     homeConfigurations.awill = home-manager.lib.homeManagerConfiguration (let
-        system= "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-          inherit pkgs;
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
+      # Specify your home configuration modules here, for example,
+      # the path to your home.nix.
+      modules = [ ./home.nix ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      });
-    };
+      # Optionally use extraSpecialArgs
+      # to pass through arguments to home.nix
+    });  # homeConfigurations.awill
+
+    nixosConfigurations.nixdeck = nixpkgs.lib.nixosSystem (let
+      system = "x86_64-linux";
+      #pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      inherit system;
+
+      modules = [
+        ./hardware-configuration.nix
+        ./configuration.nix
+      ];
+    });  # nixosConfigurations.nixdeck
+  };
 }

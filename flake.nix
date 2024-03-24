@@ -24,7 +24,7 @@
 
       # Optionally use extraSpecialArgs
       # to pass through arguments to home.nix
-    });  # homeConfigurations.awill
+    }); # homeConfigurations.awill
 
     nixosConfigurations.nixdeck = nixpkgs.lib.nixosSystem (let
       system = "x86_64-linux";
@@ -35,7 +35,44 @@
       modules = [
         ./hardware-configuration.nix
         ./configuration.nix
+        jovian.nixosModules.jovian
+        {
+          jovian = {
+            steam = {
+              enable = true;
+              autoStart = true;
+              #desktopSession can be plasma or plasmawayland.
+              desktopSession = "plasma";
+              user = "deck";
+            };
+            devices.steamdeck = {
+              enable = true;
+              autoUpdate = true;
+              enableGyroDsuService = true;
+              enablePerfControlUdevRules = true;
+              enableSoundSupport = true;
+              enableControllerUdevRules = true;
+              enableXorgRotation = true; # should play with this later...
+            };
+            decky-loader = { enable = true; };
+          };
+        }
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            users.deck = { pkgs, ... }: {
+              imports = [ ./home.nix ];
+
+              home = { username = pkgs.lib.mkForce "deck";
+                       homeDirectory = pkgs.lib.mkForce /home/deck;
+                       };
+              programs.home-manager.enable = pkgs.lib.mkForce false;
+            };
+          };
+        }
       ];
-    });  # nixosConfigurations.nixdeck
+    }); # nixosConfigurations.nixdeck
   };
 }

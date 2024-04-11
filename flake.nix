@@ -33,8 +33,8 @@
       inherit system;
 
       modules = [
-        ./hardware-configuration.nix
-        ./configuration.nix
+        ./nixos-nixdeck/hardware-configuration.nix
+        ./nixos-nixdeck/configuration.nix
         jovian.nixosModules.jovian
         {
           jovian = {

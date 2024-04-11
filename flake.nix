@@ -54,7 +54,7 @@
               enableControllerUdevRules = true;
               enableXorgRotation = true; # should play with this later...
             };
-            decky-loader = { enable = true; };
+            decky-loader = { enable = false; };
           };
         }
         home-manager.nixosModules.home-manager

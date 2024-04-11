@@ -7,7 +7,6 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    <home-manager/nixos>
   ];
 
   # Configure the bootloader. You can only uncomment GRUB or systemd-boot, not both.
@@ -28,8 +27,7 @@
   networking.hostName = "Probook-650"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
@@ -37,10 +35,8 @@
   # Steam. Self explanatory.
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   # Enable flakes ("experimental?")
@@ -82,15 +78,12 @@
   security = {
     doas.enable = true;
     sudo.enable = false;
-    doas.extraRules =[{
-      users = ["awill"];
+    doas.extraRules = [{
+      users = [ "awill" ];
       keepEnv = true;
       persist = true;
     }];
   };
-  # Enable usage of listed insecure packages (mood tbh)
-
-  nixpkgs.config.permittedInsecurePackages = [ "python-2.7.18.7" ];
 
   # Enable sound.
   sound.enable = true;
@@ -141,14 +134,12 @@
     firefox
     nano
     python3
-    python2
     vmware-workstation
     gparted
     dosfstools
     ntfs3g
     docker
     docker-compose
-    (pkgs.callPackage ./3dstool.nix { })
   ];
   nixpkgs.config.allowUnfree = true;
   # Some programs need SUID wrappers, can be configured further or are
@@ -176,7 +167,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = false;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

@@ -3,7 +3,7 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -65,14 +65,42 @@
             users.deck = { pkgs, ... }: {
               imports = [ ./home.nix ];
 
-              home = { username = pkgs.lib.mkForce "deck";
-                       homeDirectory = pkgs.lib.mkForce /home/deck;
-                       };
+              home = {
+                username = pkgs.lib.mkForce "deck";
+                homeDirectory = pkgs.lib.mkForce /home/deck;
+              };
               programs.home-manager.enable = pkgs.lib.mkForce false;
             };
           };
         }
       ];
     }); # nixosConfigurations.nixdeck
+    nixosConfigurations.Probook-650 = nixpkgs.lib.nixosSystem (let
+      system = "x86_64-linux";
+      #pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      inherit system;
+
+      modules = [
+        ./nixos-probook/hardware-configuration.nix
+        ./nixos-probook/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            users.awill = { pkgs, ... }: {
+              imports = [ ./home.nix ];
+
+              home = {
+                username = pkgs.lib.mkForce "awill";
+                homeDirectory = pkgs.lib.mkForce /home/awill;
+              };
+              programs.home-manager.enable = pkgs.lib.mkForce false;
+            };
+          };
+        }
+      ];
+    }); # nixosConfigurations.Probook-650
   };
 }

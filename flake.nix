@@ -3,7 +3,7 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     home-manager = {
       url = "github:nix-community/home-manager";

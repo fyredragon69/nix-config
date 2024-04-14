@@ -84,9 +84,6 @@
       enableControllerUdevRules = true;
       enableXorgRotation = true; #should play with this later...
     };
-    decky-loader = {
-      enable = true;
-    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -116,6 +113,7 @@
   #  wget
   # https://github.com/NixOS/nixpkgs/issues/271483#issuecomment-1838055011
   pkgsi686Linux.gperftools
+  pkgs.lutris
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -61,11 +61,11 @@
   nix.settings.trusted-users = [ "root" "awill" ];
 
   # Enable KDE Plasma.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
+  # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
@@ -90,7 +90,7 @@
   hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  # services.xserver.libinput.enable = true;
 
   # Enable microcode updates.
   hardware.cpu.intel.updateMicrocode = true;

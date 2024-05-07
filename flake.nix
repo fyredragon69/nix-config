@@ -101,6 +101,33 @@
           };
         }
       ];
-    }); # nixosConfigurations.Probook-650
+    }); # nixosConfigurations.Framework
+    nixosConfigurations.Framework = nixpkgs.lib.nixosSystem (let
+      system = "x86_64-linux";
+      #pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      inherit system;
+
+      modules = [
+        ./nixos-framework/hardware-configuration.nix
+        ./nixos-framework/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            users.awill = { pkgs, ... }: {
+              imports = [ ./home.nix ];
+
+              home = {
+                username = pkgs.lib.mkForce "awill";
+                homeDirectory = pkgs.lib.mkForce /home/awill;
+              };
+              programs.home-manager.enable = pkgs.lib.mkForce false;
+            };
+          };
+        }
+      ];
+    }); # nixosConfigurations.Framework
   };
 }

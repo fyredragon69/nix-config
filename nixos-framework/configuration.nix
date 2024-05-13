@@ -15,6 +15,7 @@ in
 
   # Bootloader.
   boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.systemd-boot.configurationLimit = 2;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.lanzaboote = {
     enable = true;
@@ -32,6 +33,8 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  nix.gc.automatic = true;
 
   # Add aliases for commonly screwed up commands.
   environment.shellAliases = {

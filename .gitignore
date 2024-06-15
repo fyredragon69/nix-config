@@ -1,5 +1,6 @@
 home.nix.bak
 result
 result-*
-current-system.nar.zst
+*.nar
+*.nar.zst
 *.kate-swp

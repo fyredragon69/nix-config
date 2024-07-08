@@ -112,10 +112,12 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kate
+      binutils
       discord
+      makemkv
       pfetch
+      handbrake
       gftp
-      neofetch
       fastfetch
       screenfetch
       partition-manager
@@ -123,6 +125,9 @@ in
       btop
       nixfmt
       hexchat
+      usbutils
+      inetutils
+      hyfetch
     ];
   };
 
@@ -189,7 +194,13 @@ in
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
+  
+  # Enable nix-ld.
+    programs.nix-ld = {
+      enable = true;
+      libraries = with pkgs; [ icu ];
+    };
+  
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.

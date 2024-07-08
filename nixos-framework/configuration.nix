@@ -128,6 +128,7 @@ in
       usbutils
       inetutils
       hyfetch
+      filelight
     ];
   };
 

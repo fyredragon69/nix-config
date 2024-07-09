@@ -106,15 +106,10 @@
       fastfetch
       screenfetch
       discord
-      partition-manager
-      kcalc
       prismlauncher
       steam
-      git
       barrier
-      btop
-      nixfmt
-      kate
+
     ];
   };
 
@@ -134,13 +129,19 @@
     git
     firefox
     nano
+    partition-manager
+    kcalc
     python3
     vmware-workstation
     gparted
     dosfstools
+    btop
+    nixfmt
+    kate
     ntfs3g
     docker
     docker-compose
+
   ];
   nixpkgs.config.allowUnfree = true;
   # Some programs need SUID wrappers, can be configured further or are

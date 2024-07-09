@@ -111,8 +111,6 @@ in
     description = "Andrew";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kate
-      binutils
       discord
       makemkv
       pfetch
@@ -120,13 +118,7 @@ in
       gftp
       fastfetch
       screenfetch
-      partition-manager
-      kcalc
-      btop
-      nixfmt
       hexchat
-      usbutils
-      inetutils
       hyfetch
       filelight
     ];
@@ -158,6 +150,10 @@ in
     wget
     sbctl
     git
+    usbutils
+    inetutils
+    binutils
+    kate
     firefox
     nano
     python3
@@ -167,6 +163,10 @@ in
     docker
     docker-compose
     btrfs-progs
+    partition-manager
+    kcalc
+    btop
+    nixfmt
     cryptsetup
     ddrescue
     diffutils

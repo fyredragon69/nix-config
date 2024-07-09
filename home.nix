@@ -77,14 +77,14 @@
     EDITOR = "nano";
 
   };
-  # dafuq?
-  programs.thefuck = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-    enableInstantMode = false;
-  };
+  # Keep commented until nixpkgs is updated to fix.
+  #programs.thefuck = {
+  #  enable = true;
+  #  enableBashIntegration = true;
+  #  enableZshIntegration = true;
+  #  enableFishIntegration = true;
+  #  enableInstantMode = false;
+  #};
 
   # Shell aliases. Could be useful.
   home.shellAliases = {

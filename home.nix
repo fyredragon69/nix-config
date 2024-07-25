@@ -97,11 +97,21 @@
     #envExtra = ''echo "-- PATH: $PATH"'';
     plugins = [
       {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "powerlevel10k-config";
+        src = ./p10k-config;
+        file = "p10k.zsh";
+      }
+      {
         name = "zsh-nix-shell";
         src = pkgs.zsh-nix-shell;
-        file ="share/zsh-nix-shell/nix-shell.plugin.zsh";
+        file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
       }
-   ];
+    ];
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "docker" "docker-compose" ];
@@ -114,16 +124,18 @@
     dotDir = ".config/zsh";
     enableAutosuggestions = true;
     enableCompletion = true;
-    #initExtra = ''
-    #  if [ -n "$IN_NIX_SHELL" ]; then
-    #    PS1=$'%{\e[1;32m%}[''${IN_NIX_SHELL} nix-shell]%{\e[0m%} '"$PS1"
-    #    # zsh-nix-shell causes my PATH additions to be put after the /nix/store stuff,
-    #    # so i made a custom script to move the /nix/store paths to the front
-    #    export PATH=''$(${pkgs.python3}/bin/python3 -E ${./move-nix-store-paths-to-front.py})
-    #  fi
-    #  source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-    #  [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
-    #'';
+    initExtra = ''
+      if [ -n "$IN_NIX_SHELL" ]; then
+        PS1=$'%{\e[1;32m%}[''${IN_NIX_SHELL} nix-shell]%{\e[0m%} '"$PS1"
+        # zsh-nix-shell causes my PATH additions to be put after the /nix/store stuff,
+        # so i made a custom script to move the /nix/store paths to the front
+        export PATH=$(${pkgs.python3}/bin/python3 -E ${
+          ./move-nix-store-paths-to-front.py
+        })
+      fi
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
+    '';
   };
 
   # environment.pathsToLink = [ "/share/zsh" ];

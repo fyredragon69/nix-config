@@ -4,10 +4,9 @@
 
 { config, pkgs, lib, ... }:
 let
-    sources = import ./nix/sources.nix;
-    lanzaboote = import sources.lanzaboote;
-in
-{
+  sources = import ./nix/sources.nix;
+  lanzaboote = import sources.lanzaboote;
+in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     lanzaboote.nixosModules.lanzaboote
@@ -86,7 +85,7 @@ in
   hardware.bluetooth.powerOnBoot = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -147,7 +146,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    ( pkgs.callPackage ./sd-format-linux.nix {} )
+    (pkgs.callPackage ./sd-format-linux.nix { })
     wget
     sbctl
     git
@@ -196,13 +195,13 @@ in
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  
+
   # Enable nix-ld.
-    programs.nix-ld = {
-      enable = true;
-      libraries = with pkgs; [ icu ];
-    };
-  
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [ icu ];
+  };
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.

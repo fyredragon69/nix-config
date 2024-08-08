@@ -111,6 +111,7 @@ in {
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       discord
+      wineWowPackages.stable
       makemkv
       qbittorrent
       pfetch

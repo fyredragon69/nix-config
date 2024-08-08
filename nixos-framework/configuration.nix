@@ -112,10 +112,12 @@ in {
     packages = with pkgs; [
       discord
       makemkv
+      qbittorrent
       pfetch
       handbrake
       gftp
       fastfetch
+      kdenlive
       screenfetch
       hexchat
       hyfetch

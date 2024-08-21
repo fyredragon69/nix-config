@@ -110,7 +110,7 @@ in {
     description = "Andrew";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      discord
+      vesktop
       wineWowPackages.stable
       mono
       makemkv

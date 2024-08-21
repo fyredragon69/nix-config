@@ -112,6 +112,7 @@ in {
     packages = with pkgs; [
       discord
       wineWowPackages.stable
+      mono
       makemkv
       qbittorrent
       pfetch

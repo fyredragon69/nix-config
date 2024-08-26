@@ -121,6 +121,7 @@ in {
       fastfetch
       kdenlive
       screenfetch
+      vmware-workstation
       hexchat
       hyfetch
       filelight

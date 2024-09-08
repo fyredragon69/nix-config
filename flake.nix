@@ -4,14 +4,29 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    nix-darwin = {
+      url = "nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hax-nur = {
+      url = "github:ihaveamac/nur-packages/staging";
+      # this is using nixos-unstable because of the kwin patch
+      inputs.nixpkgs.follows = "nixos-unstable";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, jovian, ... }: {
+  outputs = { nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin, hax-nur, ... }: let
+    mkSpecialArgs = (me: system: {
+      inherit me;
+      hax-nur = hax-nur.outputs.packages.${system};
+    });
+   in {
     homeConfigurations.awill = home-manager.lib.homeManagerConfiguration (let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -25,7 +40,20 @@
       # Optionally use extraSpecialArgs
       # to pass through arguments to home.nix
     }); # homeConfigurations.awill
-
+    darwinConfigurations = {
+      "Mac-Mini" = nix-darwin.lib.darwinSystem (let
+        me = "awill";
+        system = "aarch64-darwin";
+      in rec {
+          inherit system;
+          
+          specialArgs = mkSpecialArgs me system;
+          modules = [
+          ./cfg-jvms.nix
+          ];
+      });
+    };
+    
     nixosConfigurations.nixdeck = nixpkgs.lib.nixosSystem (let
       system = "x86_64-linux";
       #pkgs = nixpkgs.legacyPackages.${system};

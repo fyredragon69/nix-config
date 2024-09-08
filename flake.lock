@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "hax-nur": {
+      "inputs": {
+        "nixpkgs": [
+          "nixos-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1725567812,
+        "narHash": "sha256-i0d62YQjYIOnFbLSzfK/dxxBer7FKy8MigEH6VSbbTQ=",
+        "owner": "ihaveamac",
+        "repo": "nur-packages",
+        "rev": "7f816147284d11085905568f8af670c3b7f277b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ihaveamac",
+        "ref": "staging",
+        "repo": "nur-packages",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -39,6 +60,25 @@
         "type": "github"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1725628909,
+        "narHash": "sha256-xI0OSqPHcs/c/utJsU0Zvcp1VhejMI9mgwr68uHHlPs=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "76559183801030451e200c90a1627c1d82bb4910",
+        "type": "github"
+      },
+      "original": {
+        "id": "nix-darwin",
+        "type": "indirect"
+      }
+    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -58,6 +98,22 @@
         "owner": "zhaofengli",
         "ref": "matrix-name",
         "repo": "nix-github-actions",
+        "type": "github"
+      }
+    },
+    "nixos-unstable": {
+      "locked": {
+        "lastModified": 1725634671,
+        "narHash": "sha256-v3rIhsJBOMLR8e/RNWxr828tB+WywYIoajrZKFM+0Gg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "574d1eac1c200690e27b8eb4e24887f8df7ac27c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -95,8 +151,11 @@
     },
     "root": {
       "inputs": {
+        "hax-nur": "hax-nur",
         "home-manager": "home-manager",
         "jovian": "jovian",
+        "nix-darwin": "nix-darwin",
+        "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_2"
       }
     }

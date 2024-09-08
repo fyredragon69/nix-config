@@ -5,3 +5,4 @@ result-*
 *.nar.zst
 *.kate-swp
 nixos-probook/VMware-Workstation-Full-17.5.1-23298084.x86_64.bundle
+*.DS_Store

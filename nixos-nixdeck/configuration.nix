@@ -92,9 +92,9 @@
     description = "deck";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
+      firefox-esr
       kate
-      discord
+      vesktop
     #  thunderbird
     ];
   };

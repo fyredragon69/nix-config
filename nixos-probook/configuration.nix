@@ -105,7 +105,7 @@
       neofetch
       fastfetch
       screenfetch
-      discord
+      vesktop
       prismlauncher
       steam
       barrier
@@ -127,7 +127,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
-    firefox
+    firefox-esr
     nano
     partition-manager
     kcalc

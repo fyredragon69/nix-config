@@ -159,7 +159,8 @@ in {
     inetutils
     binutils
     kate
-    firefox
+    # using firefox esr until they're done with their ai bullshit
+    firefox-esr
     nano
     python3
     gparted

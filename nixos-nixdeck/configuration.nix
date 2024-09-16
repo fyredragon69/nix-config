@@ -47,7 +47,7 @@
   # services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -106,6 +106,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Enable flakes.
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -126,6 +130,11 @@
   # };
 
   # List services that you want to enable:
+
+  # Add trusted users.
+
+  nix.settings.trusted-users = [ "deck" "root" ];
+
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

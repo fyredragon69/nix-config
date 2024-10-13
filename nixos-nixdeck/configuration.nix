@@ -82,7 +82,7 @@
       enablePerfControlUdevRules = true;
       enableSoundSupport = true;
       enableControllerUdevRules = true;
-      enableXorgRotation = true; #should play with this later...
+      enableXorgRotation = true; # should play with this later...
     };
   };
 
@@ -95,7 +95,7 @@
       firefox-esr
       kate
       vesktop
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -113,12 +113,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  # https://github.com/NixOS/nixpkgs/issues/271483#issuecomment-1838055011
-  pkgsi686Linux.gperftools
-  pkgs.lutris
-  pkgs.protontricks
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    # https://github.com/NixOS/nixpkgs/issues/271483#issuecomment-1838055011
+    pkgsi686Linux.gperftools
+    pkgs.lutris
+    pkgs.protontricks
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -134,7 +134,6 @@
   # Add trusted users.
 
   nix.settings.trusted-users = [ "deck" "root" ];
-
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

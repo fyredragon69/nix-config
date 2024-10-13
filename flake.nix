@@ -23,10 +23,10 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin, hax-nur, spicetify-nix, ... }:
+    inputs@{ nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin, hax-nur, spicetify-nix, ... }:
     let
       mkSpecialArgs = (me: system: {
-        inherit me;
+        inherit me inputs;
         hax-nur = hax-nur.outputs.packages.${system};
       });
     in {
@@ -136,6 +136,8 @@
         #pkgs = nixpkgs.legacyPackages.${system};
       in {
         inherit system;
+
+        specialArgs = mkSpecialArgs "awill" system;
 
         modules = [
           ./nixos-framework/hardware-configuration.nix

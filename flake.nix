@@ -6,6 +6,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nix-darwin = {
       url = "nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +23,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin, hax-nur, ... }:
+    { nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin, hax-nur, spicetify-nix, ... }:
     let
       mkSpecialArgs = (me: system: {
         inherit me;
@@ -140,6 +141,7 @@
           ./nixos-framework/hardware-configuration.nix
           ./nixos-framework/configuration.nix
           home-manager.nixosModules.home-manager
+          spicetify-nix.nixosModules.default
           {
             home-manager = {
               useUserPackages = true;

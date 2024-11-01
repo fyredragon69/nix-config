@@ -67,6 +67,20 @@ in {
 
   # Trusted users.
   nix.settings.trusted-users = [ "root" "awill" ];
+  
+  # Set build machines for remote building when possible.
+  nix.buildMachines = [{
+    hostName = "Vesta";
+    system = "x86_64-linux";
+    protocol = "ssh-ng";
+    maxJobs = 3;
+    speedFactor = 2;
+    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+    mandatoryFeatures = [ ];
+  }];
+
+  nix.distributedBuilds = true;
+  nix.settings.builders-use-substitutes = true;
 
   # Enable flakes. "Experimental".
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -162,7 +176,7 @@ in {
     # using firefox esr until they're done with their ai bullshit
     firefox-esr
     nano
-    python3
+    python312Full
     gparted
     dosfstools
     ntfs3g

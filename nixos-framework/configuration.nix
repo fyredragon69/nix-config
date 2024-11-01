@@ -37,7 +37,7 @@ in {
 
   # Add aliases for commonly screwed up commands.
   environment.shellAliases = {
-    sudo = "doas";
+    # sudo = "doas"; # doas keeps breaking so disabling for now
     l = "ls";
     ll = "ll -h";
     claer = "clear";
@@ -153,13 +153,8 @@ in {
 
   # Enable security things.
   security = {
-    doas.enable = true;
-    sudo.enable = false;
-    doas.extraRules = [{
-      users = [ "awill" ];
-      keepEnv = true;
-      persist = true;
-    }];
+    doas.enable = false; # doas keeps breaking so im not gonna use it for now
+    sudo.enable = true;
   };
 
   # List packages installed in system profile. To search, run:

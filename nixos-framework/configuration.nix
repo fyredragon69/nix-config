@@ -43,6 +43,8 @@ in {
     claer = "clear";
     clea = "clear";
     cls = "clear";
+    nrvl = "sudo nixos-rebuild switch -v -L --flake ."
+    nfu = "nix flake update --commit-lock-file"
   };
 
   # Set your time zone.

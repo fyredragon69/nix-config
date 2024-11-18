@@ -70,14 +70,24 @@ in {
   
   # Set build machines for remote building when possible.
   nix.buildMachines = [{
-    hostName = "Vesta";
+    hostName = "vesta";
     system = "x86_64-linux";
     protocol = "ssh-ng";
-    maxJobs = 3;
+    maxJobs = 4;
     speedFactor = 2;
     supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
     mandatoryFeatures = [ ];
   }];
+
+  # SSH config for remote building.
+  programs.ssh.extraConfig = "
+Host vesta
+  HostName vesta
+  Port 22
+  User nixremote
+  IdentitiesOnly yes
+  IdentityFile /root/.ssh/id_nixremote
+  ";
 
   nix.distributedBuilds = true;
   nix.settings.builders-use-substitutes = true;
@@ -125,6 +135,7 @@ in {
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       vesktop
+      wireshark
       wineWowPackages.stable
       mono
       makemkv

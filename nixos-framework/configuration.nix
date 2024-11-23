@@ -174,6 +174,7 @@ Host vesta
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     (pkgs.callPackage ./sd-format-linux.nix { })
+    (pkgs.callPackage ./fusee-nano.nix { })
     wget
     sbctl
     git

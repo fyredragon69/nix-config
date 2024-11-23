@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, util-linux, makeWrapper }:
+{ stdenv, lib, fetchFromGitHub, xxd, util-linux, makeWrapper }:
 
 stdenv.mkDerivation rec {
   pname = "fusee-nano";
@@ -6,13 +6,13 @@ stdenv.mkDerivation rec {
 
   src = fetchFromGitHub {
   owner = "DavidBuchanan314";
-  repo = "fusee-nano"
+  repo = "fusee-nano";
   rev = "${version}";
-  hash = "sha256-f35caa7a1c7e5266d903004b3d884482849bcc6d";
+  hash = "sha256-nUduW6/k0gvKedV5SUfb6pDIk2esJ6dUTTr/NcQnzbs=";
   };
 
   buildInputs = [ util-linux ];
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [ makeWrapper xxd ];
 
   installPhase = ''
     mkdir -p $out/bin

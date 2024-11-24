@@ -11,6 +11,10 @@
       url = "nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixos-unstable";
+    };
     hax-nur = {
       url = "github:ihaveamac/nur-packages/staging";
       # this is using nixos-unstable because of the kwin patch
@@ -22,8 +26,8 @@
     };
   };
 
-  outputs =
-    inputs@{ nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin, hax-nur, spicetify-nix, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin
+    , hax-nur, spicetify-nix, nixos-apple-silicon, ... }:
     let
       mkSpecialArgs = (me: system: {
         inherit me inputs;
@@ -130,7 +134,21 @@
             };
           }
         ];
-      }); # nixosConfigurations.Framework
+      });
+
+      nixosConfigurations.asahi-Orion = nixpkgs.lib.nixosSystem
+        (let system = "aarch64-linux";
+        in {
+          inherit system;
+
+          modules = [
+            ./nixos-macmini/configuration.nix
+            ./nixos-macmini/hardware-configuration.nix
+            nixos-apple-silicon.nixosModules-apple-silicon-support
+          ];
+        }); # nixosConfigurations.asahi-Orion
+
+      # nixosConfigurations.Framework
       nixosConfigurations.Framework = nixpkgs.lib.nixosSystem (let
         system = "x86_64-linux";
         #pkgs = nixpkgs.legacyPackages.${system};

@@ -8,9 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # Include the necessary packages and configuration for Apple Silicon SoC support.
-      # Do NOT remove this.
-      ./nixos-apple-silicon/apple-silicon-support
     ];
 
   # Use the systemd-boot EFI boot loader.

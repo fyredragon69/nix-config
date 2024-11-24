@@ -136,7 +136,7 @@
         ];
       });
 
-      nixosConfigurations.asahi-Orion = nixpkgs.lib.nixosSystem
+      nixosConfigurations.Orion = nixpkgs.lib.nixosSystem
         (let system = "aarch64-linux";
         in {
           inherit system;

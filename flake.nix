@@ -144,7 +144,7 @@
           modules = [
             ./nixos-macmini/configuration.nix
             ./nixos-macmini/hardware-configuration.nix
-            nixos-apple-silicon.nixosModules-apple-silicon-support
+            nixos-apple-silicon.nixosModules.apple-silicon-support
           ];
         }); # nixosConfigurations.asahi-Orion
 

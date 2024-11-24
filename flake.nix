@@ -48,7 +48,7 @@
         # to pass through arguments to home.nix
       }); # homeConfigurations.awill
       darwinConfigurations = {
-        "Mac-Mini" = nix-darwin.lib.darwinSystem (let
+        "Mac-Mini-2" = nix-darwin.lib.darwinSystem (let
           me = "awill";
           system = "aarch64-darwin";
         in rec {

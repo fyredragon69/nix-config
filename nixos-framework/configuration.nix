@@ -137,6 +137,7 @@ Host vesta
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       vesktop
+      telegram-desktop
       wireshark
       wineWowPackages.stable
       mono
@@ -185,6 +186,7 @@ Host vesta
     # using firefox esr until they're done with their ai bullshit
     firefox-esr
     nano
+    chromium
     python312Full
     gparted
     dosfstools

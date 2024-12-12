@@ -72,8 +72,8 @@ in {
   
   # Set build machines for remote building when possible.
   nix.buildMachines = [{
-    hostName = "vesta";
-    system = "x86_64-linux";
+    hostName = "Orion";
+    system = "aarch64-linux";
     protocol = "ssh-ng";
     maxJobs = 4;
     speedFactor = 2;

@@ -7,6 +7,8 @@
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     nix-darwin = {
       url = "nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +29,7 @@
   };
 
   outputs = inputs@{ nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin
-    , hax-nur, spicetify-nix, nixos-apple-silicon, ... }:
+    , hax-nur, spicetify-nix, nixos-apple-silicon, nixos-hardware, raspberry-pi-nix, ... }:
     let
       mkSpecialArgs = (me: system: {
         inherit me inputs;
@@ -179,5 +181,17 @@
           }
         ];
       }); # nixosConfigurations.Framework
+            nixosConfigurations.pifour-nixos = nixpkgs.lib.nixosSystem (let
+        system = "aarch64-linux";
+        #pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        inherit system;
+
+        modules = [
+          ./nixos-pifour/hardware-configuration.nix
+          ./nixos-pifour/configuration.nix
+          raspberry-pi-nix.nixosModules.raspberry-pi
+        ];
+      }); # nixosConfigurations.pifour-nixos
     };
 }

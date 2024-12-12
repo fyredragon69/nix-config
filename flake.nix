@@ -192,6 +192,7 @@
           ./nixos-pifour/configuration.nix
           raspberry-pi-nix.nixosModules.raspberry-pi
         ];
+        raspberry-pi-nix.board = "bcm2711";
       }); # nixosConfigurations.pifour-nixos
     };
 }

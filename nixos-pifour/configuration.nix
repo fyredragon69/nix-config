@@ -23,6 +23,9 @@
   # Enable flakes and nix-command.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # uhhhhhhh
+  raspberry-pi-nix.board = "bcm2711";
+
   # Enable audio devices.
   boot.kernelParams = [ "snd_bcm2835.enable.hdmi=1" "snd_bcm2835.enable_headphones=1" ];
  # hardware.raspberry-pi.config = {
@@ -138,7 +141,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-   system.copySystemConfiguration = true;
+   system.copySystemConfiguration = false;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

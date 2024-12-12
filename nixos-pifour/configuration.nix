@@ -7,12 +7,12 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      <nixos-hardware/raspberry-pi/4>
+      #<nixos-hardware/raspberry-pi/4>
       ./hardware-configuration.nix
     ];
 
   # Enable some Raspberry Pi 4 GPU stuff.
-  hardware.raspberry-pi."4".fkms-3d.enable = true;
+  # hardware.raspberry-pi."4".fkms-3d.enable = true;
   services.xserver = {
     enable = true;
     displayManager.lightdm.enable = true;

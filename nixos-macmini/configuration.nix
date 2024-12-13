@@ -28,7 +28,7 @@
   # Enable SWAP too for apples shitty hardware.
   swapDevices = [ {
     device = "/var/lib/swapfile";
-    size = 8*1024:
+    size = 8*1024;
   } ];
 
   nix.gc.automatic = true;

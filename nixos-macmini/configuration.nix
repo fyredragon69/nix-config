@@ -19,6 +19,12 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  # Enable zram for apples shitty hardware.
+  zramSwap = {
+    enable = true;
+    memoryMax = 6442450944;
+  };
+
   nix.gc.automatic = true;
 
   # Set your time zone.

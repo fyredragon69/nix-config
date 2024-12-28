@@ -199,7 +199,7 @@ Host vesta
     docker
     docker-compose
     btrfs-progs
-    partition-manager
+    # partition-manager reiser4 is broken, hold until fixed
     kcalc
     btop
     nixfmt

@@ -16,6 +16,7 @@ in {
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.systemd-boot.configurationLimit = 2;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems.reiser4 = false;
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";
@@ -130,11 +131,15 @@ Host vesta
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Enable android debug bridge.
+  programs.adb.enable = true;
+  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.awill = {
     isNormalUser = true;
     description = "Andrew";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
     packages = with pkgs; [
       vesktop
       telegram-desktop

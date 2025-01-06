@@ -139,7 +139,7 @@ Host vesta
   users.users.awill = {
     isNormalUser = true;
     description = "Andrew";
-    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" ];
     packages = with pkgs; [
       vesktop
       telegram-desktop
@@ -167,6 +167,9 @@ Host vesta
 
   # Enable tailscale.
   services.tailscale.enable = true;
+ 
+  # Enable docker.
+  virtualisation.docker.enable = true;
 
   # Enable VMWare virtualization.
   # virtualisation.vmware.host.enable = true;

@@ -144,13 +144,14 @@ Host vesta
       vesktop
       telegram-desktop
       wireshark
+      _86Box-with-roms
       wineWowPackages.stable
       mono
       makemkv
       qbittorrent
       pfetch
       handbrake
-      gftp
+      # gftp // gftp is broken too now yay
       fastfetch
       kdenlive
       screenfetch

@@ -142,6 +142,7 @@ Host vesta
     extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" ];
     packages = with pkgs; [
       vesktop
+      lua-language-server
       telegram-desktop
       wireshark
       _86Box-with-roms

@@ -68,8 +68,8 @@
         inherit system;
 
         modules = [
-          ./nixos-nixdeck/hardware-configuration.nix
-          ./nixos-nixdeck/configuration.nix
+          ./sys-configs/nixos-nixdeck/hardware-configuration.nix
+          ./sys-configs/nixos-nixdeck/configuration.nix
           jovian.nixosModules.jovian
           {
             jovian = {
@@ -117,8 +117,8 @@
         inherit system;
 
         modules = [
-          ./nixos-probook/hardware-configuration.nix
-          ./nixos-probook/configuration.nix
+          ./sys-configs/nixos-probook/hardware-configuration.nix
+          ./sys-configs/nixos-probook/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -144,8 +144,8 @@
           inherit system;
 
           modules = [
-            ./nixos-macmini/configuration.nix
-            ./nixos-macmini/hardware-configuration.nix
+            ./sys-configs/nixos-macmini/configuration.nix
+            ./sys-configs/nixos-macmini/hardware-configuration.nix
             nixos-apple-silicon.nixosModules.apple-silicon-support
           ];
         }); # nixosConfigurations.asahi-Orion
@@ -160,8 +160,8 @@
         specialArgs = mkSpecialArgs "awill" system;
 
         modules = [
-          ./nixos-framework/hardware-configuration.nix
-          ./nixos-framework/configuration.nix
+          ./sys-configs/nixos-framework/hardware-configuration.nix
+          ./sys-configs/nixos-framework/configuration.nix
           home-manager.nixosModules.home-manager
           spicetify-nix.nixosModules.default
           {
@@ -188,8 +188,8 @@
         inherit system;
 
         modules = [
-          ./nixos-pifour/hardware-configuration.nix
-          ./nixos-pifour/configuration.nix
+          ./sys-configs/nixos-pifour/hardware-configuration.nix
+          ./sys-configs/nixos-pifour/configuration.nix
           raspberry-pi-nix.nixosModules.raspberry-pi
         ];
       }); # nixosConfigurations.pifour-nixos

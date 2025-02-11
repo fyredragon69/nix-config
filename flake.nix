@@ -175,7 +175,7 @@
                   username = pkgs.lib.mkForce "awill";
                   homeDirectory = pkgs.lib.mkForce /home/awill;
                 };
-                programs.home-manager.enable = pkgs.lib.mkForce false;
+                programs.home-manager.enable = true;
               };
             };
           }

@@ -20,5 +20,7 @@
   # Enable bluetooth.
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  # Enable networking.
+  networking.networkmanager.enable = true;
   # Allow unfree packages.
   nixpkgs.config.allowUnfree = true;}

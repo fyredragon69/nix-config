@@ -10,6 +10,8 @@ in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     lanzaboote.nixosModules.lanzaboote
+    (r.modules + /base-sys.nix)
+    (r.modules + /shell.nix)
   ];
 
   # Bootloader.
@@ -26,28 +28,7 @@ in {
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   nix.gc.automatic = true;
-
-  # Add aliases for commonly screwed up commands.
-  environment.shellAliases = {
-    # sudo = "doas"; # doas keeps breaking so disabling for now
-    l = "ls";
-    ll = "ll -h";
-    claer = "clear";
-    clea = "clear";
-    cls = "clear";
-    nrvl = "sudo nixos-rebuild switch -v -L --flake .";
-    nfu = "nix flake update --commit-lock-file";
-  };
-
-  # Set your time zone.
-  time.timeZone = "America/Toronto";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_CA.UTF-8";
 
   # Enable the X11 windowing system.
   # Let's see if this works...

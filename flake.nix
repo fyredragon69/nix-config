@@ -31,6 +31,11 @@
   outputs = inputs@{ nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin
     , hax-nur, spicetify-nix, nixos-apple-silicon, nixos-hardware, raspberry-pi-nix, ... }:
     let
+      r = {
+        root = ./.;
+        sys-configs = ./sys-configs;
+        modules = ./modules;
+      };
       mkSpecialArgs = (me: system: {
         inherit me inputs;
         hax-nur = hax-nur.outputs.packages.${system};

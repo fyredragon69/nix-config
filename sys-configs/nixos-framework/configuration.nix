@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, r, ... }:
 let
   sources = import ./nix/sources.nix;
   lanzaboote = import sources.lanzaboote;
@@ -12,6 +12,10 @@ in {
     lanzaboote.nixosModules.lanzaboote
     (r.modules + /base-sys.nix)
     (r.modules + /shell.nix)
+  ];
+  # Add OpenCL stuff.
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-compute-runtime
   ];
 
   # Bootloader.

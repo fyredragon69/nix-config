@@ -10,6 +10,6 @@
     nrvl = "sudo nixos-rebuild switch -v -L --flake .";
     nfu = "nix flake update --commit-lock-file";
   };
-
-  users.users.${me}.shell = "zsh";
+  programs.zsh.enable = true;
+  users.users.${me}.shell = pkgs.zsh;
 }

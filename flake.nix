@@ -37,7 +37,7 @@
         modules = ./modules;
       };
       mkSpecialArgs = (me: system: {
-        inherit me inputs;
+        inherit me inputs r;
         hax-nur = hax-nur.outputs.packages.${system};
       });
     in {

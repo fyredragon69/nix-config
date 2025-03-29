@@ -135,12 +135,12 @@ Host vesta
       handbrake
       #gftp #gftp is broken too now yay
       fastfetch
-      kdenlive
+      kdePackages.kdenlive
       screenfetch
       vmware-workstation
       hexchat
       hyfetch
-      filelight
+      kdePackages.filelight
     ];
   };
 
@@ -173,7 +173,7 @@ Host vesta
     usbutils
     inetutils
     binutils
-    kate
+    kdePackages.kate
     # using firefox esr until they're done with their ai bullshit
     firefox-esr
     nano
@@ -185,8 +185,8 @@ Host vesta
     docker
     docker-compose
     btrfs-progs
-    partition-manager #reiser4 is broken, hold until fixed
-    kcalc
+    kdePackages.partitionmanager #reiser4 is broken, hold until fixed
+    kdePackages.kcalc
     btop
     nixfmt
     cryptsetup

@@ -18,6 +18,13 @@ in {
     intel-compute-runtime
   ];
 
+  # Enable binfmt.
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "powerpc64le-linux"
+    "mipsel-linux"
+    "riscv64-linux"
+  ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 2;
@@ -137,7 +144,7 @@ Host vesta
       fastfetch
       kdePackages.kdenlive
       screenfetch
-      vmware-workstation
+      #vmware-workstation
       hexchat
       hyfetch
       kdePackages.filelight
@@ -165,7 +172,7 @@ Host vesta
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (pkgs.callPackage ./sd-format-linux.nix { })
+    # leave commented until i figure out a fix(pkgs.callPackage ./sd-format-linux.nix { })
     (pkgs.callPackage ./fusee-nano.nix { })
     wget
     sbctl

@@ -18,12 +18,16 @@ in {
     intel-compute-runtime
   ];
 
+  # Enable UEFI firmware support for virtualization.
+  systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
+
   # Enable binfmt.
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
     "powerpc64le-linux"
     "mipsel-linux"
     "riscv64-linux"
+    "powerpc-linux"
   ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -176,6 +180,7 @@ Host vesta
     (pkgs.callPackage ./fusee-nano.nix { })
     wget
     sbctl
+    qemu
     git
     usbutils
     inetutils

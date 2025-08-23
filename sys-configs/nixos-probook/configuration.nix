@@ -75,22 +75,21 @@
   # services.printing.enable = true;
 
   # Enable VMWare virtualization. 
-  virtualisation.vmware.host.enable = true;
+  #virtualisation.vmware.host.enable = true;
 
   # Enable security things.
   security = {
-    doas.enable = true;
-    sudo.enable = false;
-    doas.extraRules = [{
-      users = [ "awill" ];
-      keepEnv = true;
-      persist = true;
-    }];
+    doas.enable = false;
+    sudo.enable = true;
+   # doas.extraRules = [{
+   #   users = [ "awill" ];
+   #   keepEnv = true;
+   #   persist = true;
+   # }];
   };
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -104,7 +103,7 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       pfetch
-      gftp
+      #gftp
       neofetch
       fastfetch
       screenfetch
@@ -132,15 +131,15 @@
     git
     firefox-esr
     nano
-    partition-manager
-    kcalc
+    kdePackages.partitionmanager
+    kdePackages.kcalc
     python3
-    vmware-workstation
+    #vmware-workstation
     gparted
     dosfstools
     btop
     nixfmt
-    kate
+    kdePackages.kate
     ntfs3g
     docker
     docker-compose

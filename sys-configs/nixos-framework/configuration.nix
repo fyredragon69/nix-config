@@ -18,6 +18,25 @@ in {
     intel-compute-runtime
   ];
 
+  # Disable power-profiles-daemon to prevent conflcit with tlp.
+  services.power-profiles-daemon.enable = false;
+
+  # Enable tlp for battery management.
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_ON_BAT = "balance_power";
+      CPU_ENERGY_PERF_ON_AC = "balance_perf";
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
+      START_CHARGE_THRESH_BAT0 = 5;
+      STOP_CHARGE_THRESH_BAT0 = 90;
+    };
+  };
   # Enable UEFI firmware support for virtualization.
   systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 

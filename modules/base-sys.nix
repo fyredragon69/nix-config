@@ -23,4 +23,5 @@
   # Enable networking.
   networking.networkmanager.enable = true;
   # Allow unfree packages.
-  nixpkgs.config.allowUnfree = true;}
+  nixpkgs.config.allowUnfree = true
+;}

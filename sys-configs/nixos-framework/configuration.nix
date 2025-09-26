@@ -216,6 +216,7 @@ Host vesta
     inetutils
     binutils
     kdePackages.kate
+    tmux
     # using firefox esr until they're done with their ai bullshit
     firefox-esr
     nano

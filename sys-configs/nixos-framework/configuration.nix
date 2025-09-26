@@ -13,10 +13,6 @@ in {
     (r.modules + /base-sys.nix)
     (r.modules + /shell.nix)
   ];
-  # Add OpenCL stuff.
-  hardware.opengl.extraPackages = with pkgs; [
-    intel-compute-runtime
-  ];
 
   # Disable power-profiles-daemon to prevent conflcit with tlp.
   services.power-profiles-daemon.enable = false;
@@ -121,8 +117,8 @@ Host vesta
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -134,7 +130,7 @@ Host vesta
 
   # Enable sound with pipewire.
   #sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -221,7 +217,6 @@ Host vesta
     firefox-esr
     nano
     chromium
-    python312Full
     gparted
     dosfstools
     ntfs3g

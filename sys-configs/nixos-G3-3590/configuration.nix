@@ -39,7 +39,7 @@
 
   # Try to enable drivers for GTX 1650 Mobile.
   hardware = {
-    nvidia.PowerManagement.enable = true;
+    nvidia.powerManagement.enable = true;
     nvidia.prime = {
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
@@ -47,7 +47,7 @@
     graphics.enable = true;
     nvidia.open = false;
   };
-  boot.blacklistedKernelModules = [ "nouveau" ];
+  #boot.blacklistedKernelModules = [ "nouveau" ];
 
   # Enable flakes. "Experimental".
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

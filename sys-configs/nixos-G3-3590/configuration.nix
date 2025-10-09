@@ -3,8 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, r, ... }:
-
-{
+let
+  sources = import ./nix/sources.nix;
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -46,6 +47,21 @@
     };
     graphics.enable = true;
     nvidia.open = false;
+  };
+
+  # Enable steam.
+  programs.steam = {
+  enable = true; # Master switch, already covered in installation
+  remotePlay.openFirewall = true;  # For Steam Remote Play
+  dedicatedServer.openFirewall = true; # For Source Dedicated Server hosting
+  # Other general flags if available can be set here.
+  };
+  programs.gamemode.enable = true;
+  
+  # Enable Monado for VR.
+  services.monado = {
+  enable = true;
+  defaultRuntime = true; # Register as default OpenXR runtime
   };
   #boot.blacklistedKernelModules = [ "nouveau" ];
 
@@ -125,7 +141,7 @@
      ntfs3g
      docker
      docker-compose
-     btrfs-programs
+     btrfs-progs
      kdePackages.partitionmanager
      kdePackages.kcalc
      btop

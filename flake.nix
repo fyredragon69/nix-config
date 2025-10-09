@@ -155,6 +155,7 @@
           ./sys-configs/nixos-G3-3590/hardware-configuration.nix
           ./sys-configs/nixos-G3-3590/configuration.nix
           home-manager.nixosModules.home-manager
+          spicetify-nix.nixosModules.default
           {
             home-manager = {
               useUserPackages = true;

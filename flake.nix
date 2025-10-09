@@ -149,6 +149,8 @@
       in {
         inherit system;
 
+        specialArgs = mkSpecialArgs "awill" system;
+
         modules = [
           ./sys-configs/nixos-G3-3590/hardware-configuration.nix
           ./sys-configs/nixos-G3-3590/configuration.nix

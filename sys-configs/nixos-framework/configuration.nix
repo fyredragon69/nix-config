@@ -44,6 +44,7 @@ in {
     #  enable = true;
     #  driver = pkgs.libfprint-2-tod1-goodix;
     #};
+
   # Enable UEFI firmware support for virtualization.
   systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 
@@ -61,6 +62,7 @@ in {
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # Enable automatic garbage collection in the /nix directory.
   nix.gc.automatic = true;
 
   # Enable the X11 windowing system.
@@ -79,30 +81,6 @@ in {
 
   # Trusted users.
   nix.settings.trusted-users = [ "root" "awill" ];
-  
-  # Set build machines for remote building when possible.
-  nix.buildMachines = [{
-    hostName = "Orion";
-    system = "aarch64-linux";
-    protocol = "ssh-ng";
-    maxJobs = 4;
-    speedFactor = 2;
-    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-    mandatoryFeatures = [ ];
-  }];
-
-  # SSH config for remote building.
-  programs.ssh.extraConfig = "
-Host vesta
-  HostName vesta
-  Port 22
-  User nixremote
-  IdentitiesOnly yes
-  IdentityFile /root/.ssh/id_nixremote
-  ";
-
-  nix.distributedBuilds = true;
-  nix.settings.builders-use-substitutes = true;
 
   # Enable flakes. "Experimental".
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -251,6 +251,9 @@ in {
     libraries = with pkgs; [ icu ];
   };
 
+  # Enable entropy service to hopefully help with sddm times.
+  services.jitterentropy-rngd.enable = true;
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.

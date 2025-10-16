@@ -143,37 +143,6 @@
         ];
       }); #nixosConfigurations.Probook-650
 
-      nixosConfigurations.G3-3590 = nixpkgs.lib.nixosSystem (let
-        system = "x86_64-linux";
-        #pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        inherit system;
-
-        specialArgs = mkSpecialArgs "awill" system;
-
-        modules = [
-          ./sys-configs/nixos-G3-3590/hardware-configuration.nix
-          ./sys-configs/nixos-G3-3590/configuration.nix
-          home-manager.nixosModules.home-manager
-          spicetify-nix.nixosModules.default
-          {
-            home-manager = {
-              useUserPackages = true;
-              useGlobalPkgs = true;
-              users.awill = { pkgs, ... }: {
-                imports = [ ./home.nix ];
-
-                home = {
-                  username = pkgs.lib.mkForce "awill";
-                  homeDirectory = pkgs.lib.mkForce /home/awill;
-                };
-                programs.home-manager.enable = pkgs.lib.mkForce false;
-              };
-            };
-          }
-        ];
-      }); #nixosConfigurations.G3-3590
-
 
       nixosConfigurations.Orion = nixpkgs.lib.nixosSystem
         (let system = "aarch64-linux";

@@ -170,6 +170,9 @@
           ./sys-configs/nixos-framework/configuration.nix
           home-manager.nixosModules.home-manager
           "${nixos-hardware}/framework/13-inch/common/intel.nix" 
+          "${nixos-hardware}/framework/13-inch/common/default.nix"
+	  "${nixos-hardware}/framework/13-inch/common/kmod.nix"
+          "${nixos-hardware}/framework/13-inch/common/framework-tool.nix"
           spicetify-nix.nixosModules.default
           {
             home-manager = {

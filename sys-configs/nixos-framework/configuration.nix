@@ -41,12 +41,6 @@ in {
   systemd.services.fprintd = {
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "simple";
-  };
-  services.fprintd.enable = true;    # Enable below if issues with just enabling fprintd.
-    #tod = {
-    #  enable = true;
-    #  driver = pkgs.libfprint-2-tod1-goodix;
-    #};
 
   # Enable UEFI firmware support for virtualization.
   systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];

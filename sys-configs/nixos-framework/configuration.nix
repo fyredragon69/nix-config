@@ -34,6 +34,12 @@ in {
     };
   };
 
+  # Enable thermald.
+  services.thermald.enable = true;
+  
+  # Enable tuned
+  services.tuned.enable = true;
+
   # Enable biometric login.
   systemd.services.fprintd = {
     wantedBy = [ "multi-user.target" ];

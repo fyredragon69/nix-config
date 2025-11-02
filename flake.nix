@@ -53,7 +53,20 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-      }); # homeConfigurations.deck
+      }); # homeConfigurations.awill
+      homeConfigurations.awill = home-manager.lib.homeManagerConfiguration (let
+        system = "aarch64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./home.nix ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      }); # homeConfigurations.awill
      homeConfigurations.deck = home-manager.lib.homeManagerConfiguration (let
        system = "x86_64-linux";
        pkgs = nixpkgs.legacyPackages.${system};

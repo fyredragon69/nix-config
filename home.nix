@@ -122,9 +122,9 @@
     };
     enable = true;
     dotDir = ".config/zsh";
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
-    initExtra = ''
+    initContent = ''
       if [ -n "$IN_NIX_SHELL" ]; then
         PS1=$'%{\e[1;32m%}[''${IN_NIX_SHELL} nix-shell]%{\e[0m%} '"$PS1"
         # zsh-nix-shell causes my PATH additions to be put after the /nix/store stuff,

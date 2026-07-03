@@ -176,7 +176,7 @@
       nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ash.nixosMosules.default
+          ash.nixosModules.default
           ({ pkgs, ... }: {
             services.chromeos-linux = {
               enable = true;

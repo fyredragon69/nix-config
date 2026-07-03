@@ -6,6 +6,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    ash.url = "github:vitalyavolyn/chromeos-linux";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
@@ -29,7 +30,8 @@
   };
 
   outputs = inputs@{ nixpkgs, home-manager, jovian, nixos-unstable, nix-darwin
-    , hax-nur, spicetify-nix, nixos-apple-silicon, nixos-hardware, raspberry-pi-nix, ... }:
+    , hax-nur, spicetify-nix, nixos-apple-silicon, nixos-hardware, raspberry-pi-nix
+    , ash, ... }:
     let
       r = {
         root = ./.;
@@ -43,19 +45,6 @@
     in {
       homeConfigurations.awill = home-manager.lib.homeManagerConfiguration (let
         system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        inherit pkgs;
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      }); # homeConfigurations.awill
-      homeConfigurations.awill = home-manager.lib.homeManagerConfiguration (let
-        system = "aarch64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
       in {
         inherit pkgs;
@@ -184,6 +173,18 @@
           ];
         }); # nixosConfigurations.asahi-Orion
 
+      nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ash.nixosMosules.default
+          ({ pkgs, ... }: {
+            services.chromeos-linux = {
+              enable = true;
+              user = "awill"
+            ;
+          };
+        })];
+      };
       # nixosConfigurations.Framework
       nixosConfigurations.Framework = nixpkgs.lib.nixosSystem (let
         system = "x86_64-linux";

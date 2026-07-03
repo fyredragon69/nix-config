@@ -1,4 +1,4 @@
-{ config, pkgs, ... };
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -49,7 +49,7 @@
   };
 
   # System wide packages to install.
-  environment.systemPacakges = with pkgs; [
+  environment.systemPackages = with pkgs; [
     curl
     chromium
     nano
